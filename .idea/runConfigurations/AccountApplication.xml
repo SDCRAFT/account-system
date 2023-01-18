@@ -1,0 +1,17 @@
+<component name="ProjectRunConfigurationManager">
+  <configuration default="false" name="AccountApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot">
+    <module name="org.sdcraft.web.account.main" />
+    <option name="SPRING_BOOT_MAIN_CLASS" value="org.sdcraft.web.account.AccountApplication" />
+    <option name="VM_PARAMETERS" value="--add-opens=java.base/jdk.internal.loader=ALL-UNNAMED" />
+    <option name="WORKING_DIRECTORY" value="file://$PROJECT_DIR$/backend" />
+    <extension name="coverage">
+      <pattern>
+        <option name="PATTERN" value="org.sdcraft.web.account.*" />
+        <option name="ENABLED" value="true" />
+      </pattern>
+    </extension>
+    <method v="2">
+      <option name="Make" enabled="true" />
+    </method>
+  </configuration>
+</component>

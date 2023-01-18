@@ -3,6 +3,7 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/.idea/account.iml" filepath="$PROJECT_DIR$/.idea/account.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/org.sdcraft.web.account.iml" filepath="$PROJECT_DIR$/.idea/modules/org.sdcraft.web.account.iml" />
     </modules>
   </component>
 </project>
