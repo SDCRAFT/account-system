@@ -26,13 +26,14 @@ repositories {
 dependencies {
     //spring
     implementation("org.springframework.boot:spring-boot-starter-web:3.0.1")
-    implementation("com.fasterxml.jackson.module:jackson-module-kotlin")
     implementation("org.springframework.boot:spring-boot-configuration-processor:3.0.1")
     implementation("org.springframework.boot:spring-boot-starter-log4j2:3.0.1")
+    implementation("org.mybatis.spring.boot:mybatis-spring-boot-starter:3.0.1")
+    implementation("com.alibaba:druid-spring-boot-starter:1.2.15")
+
+    implementation("com.fasterxml.jackson.module:jackson-module-kotlin")
 
     implementation("org.apache.logging.log4j:log4j-iostreams:2.19.0")
-
-    implementation("org.apache.ibatis:ibatis-core:3.0")
     //kotlin
     implementation("org.jetbrains.kotlin:kotlin-reflect")
     implementation("org.jetbrains.kotlin:kotlin-stdlib-jdk8")
@@ -42,6 +43,7 @@ dependencies {
 
 
 }
+
 tasks.withType<KotlinCompile> {
     kotlinOptions {
         freeCompilerArgs = listOf("-Xjsr305=strict")
@@ -55,6 +57,11 @@ tasks.withType<Jar> {
         attributes["Add-Exports"] = "java.base/jdk.internal.loader"
     }
 }
+
+tasks.withType<Test> {
+    useJUnitPlatform()
+}
+
 configurations.all {
     exclude ("org.springframework.boot","spring-boot-starter-logging")
 }

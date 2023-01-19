@@ -1,6 +1,6 @@
 package org.sdcraft.web.account.utils.sql
+import java.util.*
 
-import java.util.UUID
 
 class User {
     private var uuid = UUID.randomUUID().toString()

@@ -7,37 +7,23 @@ import org.apache.logging.log4j.LogManager
 import org.apache.logging.log4j.Logger
 import org.apache.logging.log4j.io.IoBuilder
 import org.sdcraft.web.account.utils.Config
-
+import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.stereotype.Repository
 import java.io.StringReader
-import java.sql.Connection
-import java.sql.DriverManager
-import java.sql.SQLException
-import java.util.Properties
-import kotlin.system.exitProcess
+import javax.sql.DataSource
 
 @Repository
 class Init {
     companion object
 
-    var conn: Connection? = null
+    @Autowired
+    private var dataSource: DataSource? = null
     private var logger: Logger = LogManager.getLogger("SQL Init")
+
 
     @PostConstruct
     fun init() {
-        try {
-            Class.forName(Config.JDBC.driveClassname)
-        } catch (e: ClassNotFoundException) {
-            logger.error(e.message, e)
-            exitProcess(1)
-        }
-        val prop = Properties()
-        for (param in Config.JDBC.DataBase.params) {
-            prop.setProperty(param.key, param.value)
-        }
-        prop.setProperty("user", Config.JDBC.DataBase.user)
-        prop.setProperty("password", Config.JDBC.DataBase.password)
-        conn = DriverManager.getConnection(getJDBCUrl(Config.JDBC.driveClassname), prop)
+        val conn = dataSource?.connection
         val alt = "ALTER TABLE `${Config.JDBC.DataBase.name}`.`${Config.JDBC.DataBase.tablePrefix}users`"
 
         //Init with MYSQL
@@ -64,15 +50,6 @@ class Init {
                 )
             )
         }
-    }
 
-    private fun getJDBCUrl(driveClassName: String): String? {
-        val formatStr = "jdbc:%s://%s:%d/%s"
-        if (driveClassName == "com.mysql.jdbc.Driver" || driveClassName == "com.mysql.cj.jdbc.Driver") {
-            return formatStr.format("mysql", Config.JDBC.host, Config.JDBC.port, Config.JDBC.DataBase.name)
-        } else if (driveClassName == "org.postgresql.Driver") {
-            return formatStr.format("postgresql", Config.JDBC.host, Config.JDBC.port, Config.JDBC.DataBase.name)
-        }
-        return null
     }
 }
