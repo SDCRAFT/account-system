@@ -3,10 +3,12 @@ import java.util.*
 
 
 class User {
-    private var uuid = UUID.randomUUID().toString()
-    private var username = ""
-    private var email = ""
-    private var passwordEncrypted = ""
-    private var permissionLevel = 0
-    private var activeStatus = false
+    var uuid = UUID.randomUUID().toString()
+    var username = ""
+    var email = ""
+    var passwordEncrypted = ""
+    var permissionLevel = 0
+    var activeStatus = false
+    var createTime = 0
+    var updateTime = 0
 }

@@ -1,8 +1,6 @@
 package org.sdcraft.web.account.utils
 
 import jakarta.annotation.PostConstruct
-import org.slf4j.Logger
-import org.slf4j.LoggerFactory
 import org.springframework.beans.factory.config.YamlPropertiesFactoryBean
 import org.springframework.boot.context.properties.ConfigurationProperties
 import org.springframework.context.annotation.Bean
@@ -10,7 +8,6 @@ import org.springframework.context.support.PropertySourcesPlaceholderConfigurer
 import org.springframework.core.io.FileSystemResource
 import org.springframework.stereotype.Component
 import java.io.File
-import java.lang.IllegalStateException
 import java.nio.file.Files
 
 @Component
@@ -44,8 +41,8 @@ object Config {
         @Component
         @ConfigurationProperties(value = "jdbc-config.database")
          object DataBase {
-            var user:String? = ""
-            var password:String? = ""
+            var user:String = ""
+            var password:String = ""
             var name:String = ""
             var tablePrefix = ""
             var params:LinkedHashMap<String, String> = LinkedHashMap()

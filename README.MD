@@ -9,5 +9,5 @@
 - ![](https://img.shields.io/github/release-date/SDCRAFT/account-system)
 
 Github Actions
-- backend Build Info
+- backend
 ![](https://img.shields.io/github/actions/workflow/status/SDCRAFT/account-system/buildBackend.yml)

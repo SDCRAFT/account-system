@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="org.sdcraft.web.account.utils.sql.UserMapper">
+    <resultMap id="user" type="org.sdcraft.web.account.utils.sql.User">
+        <result column="UUID" property="uuid"/>
+        <result column="Email" property="email"/>
+        <result column="Username" property="username"/>
+        <result column="Permission" property="permissionLevel"/>
+        <result column="Password" property="passwordEncrypted"/>
+        <result column="EmailVerify" property="activeStatus"/>
+        <result column="createAt" property="createTime"/>
+        <result column="updateAt" property="updateTime"/>
+    </resultMap>
+    <select id="findByUUID" resultMap="user">
+        SELECT * FROM ${@org.sdcraft.web.account.utils.Config@JDBC.DataBase.tablePrefix}users WHERE UUID=#{uuid}
+    </select>
+    <select id="findByEmail" resultMap="user">
+        SELECT * FROM ${@org.sdcraft.web.account.utils.Config@JDBC.DataBase.tablePrefix}users WHERE Email=#{email}
+    </select>
+</mapper>

@@ -1,16 +1,21 @@
 package org.sdcraft.web.account.utils.sql
 
 import org.apache.ibatis.annotations.Mapper
-import org.apache.ibatis.annotations.Param
-import org.apache.ibatis.annotations.SelectProvider
-import org.springframework.stereotype.Repository
 
 @Mapper
-@Repository
-abstract class UserMapper {
-    @SelectProvider(type = Builder::class, method = "buildGetUserByUUID")
-    abstract fun getUserByUUID(@Param("uuid") uuid:String)
+interface UserMapper {
+    /**
+     * @param uuid User's UUID string
+     * @return User
+     * @throws Exception
+     */
+    @Throws(Exception::class)
+    fun findByUUID(uuid:String):User
 
-    //@InsertProvider()
-    //@Options(use)
+    /**
+     * @param email User's email
+     * @return User
+     * @throws Exception
+     */
+    fun findByEmail(email:String):User
 }
