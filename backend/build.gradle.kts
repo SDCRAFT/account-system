@@ -29,6 +29,7 @@ dependencies {
     implementation("org.springframework.boot:spring-boot-configuration-processor:3.0.1")
     implementation("org.springframework.boot:spring-boot-starter-log4j2:3.0.1")
     implementation("org.mybatis.spring.boot:mybatis-spring-boot-starter:3.0.1")
+    implementation("org.springframework.boot:spring-boot-starter-jdbc:3.0.1")
     implementation("com.alibaba:druid-spring-boot-starter:1.2.15")
 
     implementation("com.fasterxml.jackson.module:jackson-module-kotlin")

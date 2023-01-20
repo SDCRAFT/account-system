@@ -17,7 +17,7 @@ class Init {
     companion object
 
     @Autowired
-    private var dataSource: DataSource? = null
+    private lateinit var dataSource: DataSource
     private var logger: Logger = LogManager.getLogger("SQL Init")
 
 
