@@ -1,14 +1,18 @@
 package org.sdcraft.web.account.utils.sql
+import org.apache.ibatis.annotations.AutomapConstructor
+import java.time.Instant
 import java.util.*
+import kotlin.Boolean
 
+val timestamp = Instant.now().epochSecond
 
-class User {
-    var uuid = UUID.randomUUID().toString()
-    var username = ""
-    var email = ""
-    var passwordEncrypted = ""
-    var permissionLevel = 0
-    var activeStatus = false
-    var createTime = 0
-    var updateTime = 0
-}
+data class User @AutomapConstructor constructor(
+    var uuid: String = UUID.randomUUID().toString(),
+    var username: String,
+    var email: String,
+    var passwordEncrypted: String,
+    var permissionLevel: Int = 0,
+    var activeStatus: Boolean = false,
+    var createTime: Long = timestamp,
+    var updateTime: Long = timestamp
+)

@@ -10,13 +10,16 @@
         <result column="Permission" property="permissionLevel"/>
         <result column="Password" property="passwordEncrypted"/>
         <result column="EmailVerify" property="activeStatus"/>
-        <result column="createAt" property="createTime"/>
-        <result column="updateAt" property="updateTime"/>
+        <result column="createdAt" property="createTime"/>
+        <result column="updatedAt" property="updateTime"/>
     </resultMap>
-    <select id="findByUUID" resultMap="user">
-        SELECT * FROM ${@org.sdcraft.web.account.utils.Config@JDBC.DataBase.tablePrefix}users WHERE UUID=#{uuid}
+    <!--<select id="findByUUID" parameterType="string" resultMap="user">
+        SELECT * FROM ${@org.sdcraft.web.account.utils.Config@JDBC().DataBase.getTablePrefix()}users WHERE UUID=#{uuid}
     </select>
-    <select id="findByEmail" resultMap="user">
-        SELECT * FROM ${@org.sdcraft.web.account.utils.Config@JDBC.DataBase.tablePrefix}users WHERE Email=#{email}
-    </select>
+    <select id="findByEmail" parameterType="string" resultMap="user">
+        SELECT * FROM ${@org.sdcraft.web.account.utils.Config@JDBC.DataBase.getTablePrefix()}users WHERE Email=#{email}
+    </select>-->
+    <insert id="insert" parameterType="org.sdcraft.web.account.utils.sql.User">
+        INSERT INTO ${@org.sdcraft.web.account.utils.Config@INSTANCE.getDBPrefix()}users(`UUID`,`Email`,`Username`,`Permission`,`Password`,`EmailVerify`,`createdAt`,`updatedAt`) VALUES ("${uuid}","${email}","${username}","${permissionLevel}","${passwordEncrypted}","${activeStatus}","${createTime}","${updateTime}")
+    </insert>
 </mapper>

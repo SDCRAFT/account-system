@@ -1,5 +1,6 @@
 package org.sdcraft.web.account
 
+import org.mybatis.spring.annotation.MapperScan
 import org.sdcraft.web.account.utils.Config
 import org.sdcraft.web.account.utils.LibrariesLoader
 import org.springframework.boot.autoconfigure.SpringBootApplication
@@ -9,6 +10,7 @@ import java.io.IOException
 import java.util.*
 
 
+@MapperScan("org.sdcraft.web.account")
 @SpringBootApplication
 class AccountApplication
 

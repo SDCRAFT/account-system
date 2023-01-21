@@ -2,6 +2,7 @@ package org.sdcraft.web.account.utils.sql
 
 import jakarta.annotation.PostConstruct
 import org.apache.ibatis.jdbc.ScriptRunner
+import org.apache.ibatis.session.SqlSessionFactory
 import org.apache.logging.log4j.Level
 import org.apache.logging.log4j.LogManager
 import org.apache.logging.log4j.Logger
@@ -10,20 +11,20 @@ import org.sdcraft.web.account.utils.Config
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.stereotype.Repository
 import java.io.StringReader
-import javax.sql.DataSource
+
 
 @Repository
 class Init {
     companion object
 
     @Autowired
-    private lateinit var dataSource: DataSource
+    private lateinit var factory: SqlSessionFactory
     private var logger: Logger = LogManager.getLogger("SQL Init")
 
 
     @PostConstruct
     fun init() {
-        val conn = dataSource?.connection
+        val conn = factory.openSession()?.connection
         val alt = "ALTER TABLE `${Config.JDBC.DataBase.name}`.`${Config.JDBC.DataBase.tablePrefix}users`"
 
         //Init with MYSQL
@@ -50,6 +51,18 @@ class Init {
                 )
             )
         }
+        var user = User(username = "114", email = "heartalborada@outlook.com", passwordEncrypted = "114514")
+        /*factory.openSession().use { session -> {
+            var um = session.getMapper(UserMapper::class.java)
 
+            logger.info(user.uuid)
+            um.insert(user)
+            session.commit()
+        }}*/
+        /* debugger
+        logger.info(user.uuid)
+        var u =factory.openSession()
+        u.getMapper(UserMapper::class.java).insert(user)
+        */
     }
 }

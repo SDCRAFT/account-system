@@ -17,5 +17,9 @@ interface UserMapper {
      * @return User
      * @throws Exception
      */
+    @Throws(Exception::class)
     fun findByEmail(email:String):User
+
+    @Throws(Exception::class)
+    fun insert(user:User)
 }

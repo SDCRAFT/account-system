@@ -15,6 +15,11 @@ import java.nio.file.Files
 object Config {
     private val configDir=File(System.getProperty("user.dir"), "config")
     private val configYml=File(configDir, "config.yml")
+
+    fun getDBPrefix(): String {
+        return JDBC.DataBase.tablePrefix
+    }
+
     @Bean
     @JvmStatic
     @PostConstruct
