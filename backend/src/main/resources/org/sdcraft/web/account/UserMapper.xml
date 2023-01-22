@@ -20,6 +20,6 @@
         SELECT * FROM ${@org.sdcraft.web.account.utils.Config@JDBC.DataBase.getTablePrefix()}users WHERE Email=#{email}
     </select>-->
     <insert id="insert" parameterType="org.sdcraft.web.account.utils.sql.User">
-        INSERT INTO ${@org.sdcraft.web.account.utils.Config@INSTANCE.getDBPrefix()}users(`UUID`,`Email`,`Username`,`Permission`,`Password`,`EmailVerify`,`createdAt`,`updatedAt`) VALUES ("${uuid}","${email}","${username}","${permissionLevel}","${passwordEncrypted}","${activeStatus}","${createTime}","${updateTime}")
+        INSERT INTO ${@org.sdcraft.web.account.utils.Config@INSTANCE.getDBPrefix()}users(`UUID`,`Email`,`Username`,`Permission`,`Password`,`EmailVerify`,`createdAt`,`updatedAt`) VALUES ("${uuid}","${email}","${username}",${permissionLevel},"${passwordEncrypted}",${activeStatus},${createTime},${updateTime})
     </insert>
 </mapper>

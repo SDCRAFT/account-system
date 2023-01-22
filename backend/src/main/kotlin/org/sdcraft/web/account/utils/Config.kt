@@ -1,6 +1,5 @@
 package org.sdcraft.web.account.utils
 
-import jakarta.annotation.PostConstruct
 import org.springframework.beans.factory.config.YamlPropertiesFactoryBean
 import org.springframework.boot.context.properties.ConfigurationProperties
 import org.springframework.context.annotation.Bean
@@ -9,8 +8,9 @@ import org.springframework.core.io.FileSystemResource
 import org.springframework.stereotype.Component
 import java.io.File
 import java.nio.file.Files
+import java.util.*
 
-@Component
+@Component("Config")
 @ConfigurationProperties(value = "")
 object Config {
     private val configDir=File(System.getProperty("user.dir"), "config")
@@ -22,8 +22,8 @@ object Config {
 
     @Bean
     @JvmStatic
-    @PostConstruct
     fun properties(): PropertySourcesPlaceholderConfigurer {
+        println("Config init")
         val con = PropertySourcesPlaceholderConfigurer()
         val yaml = YamlPropertiesFactoryBean()
         try {
@@ -35,6 +35,7 @@ object Config {
             yaml.setResources(FileSystemResource(configYml))
             yaml.`object`?.let { con.setProperties(it) }
         }
+        println(Properties(yaml.`object`))
         return con
     }
     @Component
@@ -43,6 +44,7 @@ object Config {
         var host:String = ""
         var port:Int = 0
         var driveClassname:String = ""
+        var debugger:Boolean = false
         @Component
         @ConfigurationProperties(value = "jdbc-config.database")
          object DataBase {

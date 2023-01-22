@@ -12,5 +12,6 @@ jdbc-config:
       useSSL: false
       serverTimezone: UTC
       allowPublicKeyRetrieval: true
+  debugger: false
 lib-repourl: "https://maven.aliyun.com/repository/public"
 

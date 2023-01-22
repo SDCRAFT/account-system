@@ -59,10 +59,10 @@ class Init {
             um.insert(user)
             session.commit()
         }}*/
-        /* debugger
+
+        //debugger
         logger.info(user.uuid)
         var u =factory.openSession()
         u.getMapper(UserMapper::class.java).insert(user)
-        */
     }
 }

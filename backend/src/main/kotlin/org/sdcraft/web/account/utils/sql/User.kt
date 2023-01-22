@@ -2,7 +2,6 @@ package org.sdcraft.web.account.utils.sql
 import org.apache.ibatis.annotations.AutomapConstructor
 import java.time.Instant
 import java.util.*
-import kotlin.Boolean
 
 val timestamp = Instant.now().epochSecond
 
