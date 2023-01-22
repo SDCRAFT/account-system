@@ -34,17 +34,17 @@ repositories {
 
 dependencies {
     //spring
-    implementation("org.springframework.boot:spring-boot-starter-web:3.0.1")
-    implementation("org.springframework.boot:spring-boot-configuration-processor:3.0.1")
-    implementation("org.springframework.boot:spring-boot-starter-log4j2:3.0.1")
-    implementation("com.baomidou:mybatis-plus-boot-starter:3.5.3.1")
-    implementation("org.springframework.boot:spring-boot-starter-data-jpa:3.0.2")
-    implementation("org.springframework.boot:spring-boot-starter-jdbc:3.0.1")
+    implementation("org.springframework.boot:spring-boot-starter-parent")
+    implementation("org.springframework.boot:spring-boot-starter-web")
+    implementation("org.springframework.boot:spring-boot-configuration-processor")
+    implementation("org.springframework.boot:spring-boot-starter-log4j2")
+    implementation("org.springframework.boot:spring-boot-starter-data-jpa")
+    implementation("org.springframework.boot:spring-boot-starter-jdbc")
     implementation("com.alibaba:druid-spring-boot-starter:1.2.15")
 
     implementation("com.fasterxml.jackson.module:jackson-module-kotlin")
 
-    implementation("org.apache.logging.log4j:log4j-iostreams:2.19.0")
+    //implementation("org.apache.logging.log4j:log4j-iostreams:2.19.0")
     //kotlin
     implementation("org.jetbrains.kotlin:kotlin-reflect")
     implementation("org.jetbrains.kotlin:kotlin-stdlib-jdk8")

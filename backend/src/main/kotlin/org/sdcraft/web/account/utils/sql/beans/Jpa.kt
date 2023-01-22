@@ -2,25 +2,23 @@ package org.sdcraft.web.account.utils.sql.beans
 
 import org.sdcraft.web.account.utils.Config
 import org.springframework.context.annotation.Bean
-import org.springframework.context.annotation.Configuration
-import org.springframework.context.annotation.DependsOn
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories
 import org.springframework.orm.jpa.JpaVendorAdapter
 import org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean
 import org.springframework.orm.jpa.vendor.Database
 import org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter
+import org.springframework.stereotype.Component
 import org.springframework.transaction.annotation.EnableTransactionManagement
 import javax.sql.DataSource
 
 
-@Configuration
 @EnableJpaRepositories(
     //basePackages = [""],
     repositoryImplementationPostfix = "Impl",
     entityManagerFactoryRef = "entityManagerFactory",
     transactionManagerRef = "transactionManager")
 @EnableTransactionManagement
-@DependsOn("DataSource")
+@Component("Jpa")
 class Jpa {
     private fun getDataBaseType(): Database? {
         if (Config.JDBC.driveClassname == "com.mysql.jdbc.Driver" || Config.JDBC.driveClassname == "com.mysql.cj.jdbc.Driver") {
@@ -34,7 +32,7 @@ class Jpa {
     fun jpaVendorAdapter(): JpaVendorAdapter{
         val adapter = HibernateJpaVendorAdapter()
         getDataBaseType()?.let { adapter.setDatabase(it) }
-        adapter.setShowSql(Config.JDBC.debugger)
+        adapter.setShowSql(true)
         adapter.setGenerateDdl(false)
         adapter.setDatabasePlatform("org.hibernate.dialect.MySQL5Dialect")
         return adapter
